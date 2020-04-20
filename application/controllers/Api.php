@@ -58,4 +58,21 @@ class Api extends CI_Controller {
 		header('Content-Type: application/json');
 		print json_encode($fileinfo);
 	}
+
+	public function removefile() {
+		$date = $this->input->get('date');
+		$file = $this->input->get('file');
+		$destdir = "c:/gravacoes/".$date;
+
+		if (file_exists($destdir)) {
+			chdir($destdir);
+			if (file_exists($file)) {
+				unlink($file);
+			} else {
+				header("HTTP/1.1 404 Not Found");
+			}
+		} else {
+			header("HTTP/1.1 404 Not Found");
+		}
+	}
 }
