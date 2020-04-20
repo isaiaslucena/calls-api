@@ -68,6 +68,8 @@ class Api extends CI_Controller {
 			chdir($destdir);
 			if (file_exists($file)) {
 				unlink($file);
+				header('Content-Type: application/json');
+				print json_encode("File ".$file." removed!");
 			} else {
 				header("HTTP/1.1 404 Not Found");
 			}
